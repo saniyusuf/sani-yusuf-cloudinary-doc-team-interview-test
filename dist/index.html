@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudinary Transformations Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="main">
+    <figure class="main-photo">
+      <img
+        id="demo-image"
+        src="https://res.cloudinary.com/demo/image/upload/sample.jpg"
+        alt="Sample image demonstrating Cloudinary transformations"
+        width="500"
+      />
+    </figure>
+
+    <div class="btn-group" role="group" aria-label="Image transformation controls">
+      <button type="button" class="btn" id="text-overlay-btn">Text overlay</button>
+      <button type="button" class="btn" id="crop-square-btn">Crop to square</button>
+      <button type="button" class="btn" id="cartoonify-btn">Cartoonify</button>
+      <button type="button" class="btn" id="reset-btn">Reset</button>
+    </div>
+  </main>
+
+  <!-- Cloudinary JavaScript SDK (cloudinary-core) -->
+  <script src="https://cdn.jsdelivr.net/npm/cloudinary-core@2.14.0/cloudinary-core-shrinkwrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
