@@ -1,13 +1,15 @@
-// Initialize Cloudinary using cloudinary-core
+// Initialize Cloudinary SDK
 const cld = new cloudinary.Cloudinary({ cloud_name: 'demo' });
 
+// Image element reference
 const imgElement = document.getElementById('demo-image');
+
+// Button references
 const textOverlayBtn = document.getElementById('text-overlay-btn');
 const cropSquareBtn = document.getElementById('crop-square-btn');
 const cartoonifyBtn = document.getElementById('cartoonify-btn');
 const resetBtn = document.getElementById('reset-btn');
 
-// Original image URL
 const originalImageUrl = 'https://res.cloudinary.com/demo/image/upload/sample.jpg';
 
 // Text Overlay transformation
