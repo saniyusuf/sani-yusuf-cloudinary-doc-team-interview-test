@@ -1,61 +1,39 @@
-// Initialize Cloudinary SDK
 const cld = new cloudinary.Cloudinary({ cloud_name: 'demo' });
 
-// Image element reference
+const originalImageUrl = 'https://res.cloudinary.com/demo/image/upload/sample.jpg';
 const imgElement = document.getElementById('demo-image');
 
-// Button references
-const textOverlayBtn = document.getElementById('text-overlay-btn');
-const cropSquareBtn = document.getElementById('crop-square-btn');
-const cartoonifyBtn = document.getElementById('cartoonify-btn');
-const resetBtn = document.getElementById('reset-btn');
-
-const originalImageUrl = 'https://res.cloudinary.com/demo/image/upload/sample.jpg';
-
-// Text Overlay transformation
 const applyTextOverlay = () => {
-  return cld.url('sample.jpg', {
+  const transformedUrl = cld.url('sample.jpg', {
     transformation: [
       {
-        overlay: 'text:Arial_40_bold:Avatar%20Is%20The%20Greatest%20Movie',
+        overlay: 'text:Arial_40_bold:I%20love%20Cloudinary',
         color: 'white',
+        background: 'black',
         gravity: 'south',
-        y: 20,
-        background: 'rgb:00000080'
+        y: 20
       }
     ]
   });
+  imgElement.src = transformedUrl;
 };
 
-// Crop to Square transformation
 const applyCropSquare = () => {
-  return cld.url('sample.jpg', {
+  const transformedUrl = cld.url('sample.jpg', {
     crop: 'fill',
     aspect_ratio: '1:1',
     gravity: 'auto'
   });
+  imgElement.src = transformedUrl;
 };
 
-// Cartoonify transformation
 const applyCartoonify = () => {
-  return cld.url('sample.jpg', {
+  const transformedUrl = cld.url('sample.jpg', {
     effect: 'cartoonify'
   });
+  imgElement.src = transformedUrl;
 };
 
-// Button click handlers
-textOverlayBtn.addEventListener('click', () => {
-  imgElement.src = applyTextOverlay();
-});
-
-cropSquareBtn.addEventListener('click', () => {
-  imgElement.src = applyCropSquare();
-});
-
-cartoonifyBtn.addEventListener('click', () => {
-  imgElement.src = applyCartoonify();
-});
-
-resetBtn.addEventListener('click', () => {
+const resetImage = () => {
   imgElement.src = originalImageUrl;
-});
+};

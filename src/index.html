@@ -1,10 +1,59 @@
-<div class="main">
-<div class="main-photo">
-  <img src="https://res.cloudinary.com/demo/image/upload/sample.jpg" width="500px"/>
-</div>
-<div class="btn-group">
-  <div class="btn">Text overlay</div>
-  <div class="btn">Crop to square </div>
-  <div class="btn">Cartoonify <br>&nbsp;</br></div>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cloudinary Transformations Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="main-photo">
+      <img id="demo-image" src="https://res.cloudinary.com/demo/image/upload/sample.jpg" width="500px"/>
+    </div>
+    <div class="btn-group">
+      <div class="btn" id="text-overlay-btn" onclick="applyTextOverlay()">Text overlay</div>
+      <div class="btn" id="crop-to-square-btn" onclick="applyCropSquare()">Crop to square</div>
+      <div class="btn" id="cartoonify-btn" onclick="applyCartoonify()">Cartoonify</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/cloudinary-core@2.14.0/cloudinary-core-shrinkwrap.min.js"></script>
+  <script>
+    const cld = new cloudinary.Cloudinary({ cloud_name: 'demo' });
+
+    const originalImageUrl = 'https://res.cloudinary.com/demo/image/upload/sample.jpg';
+    const imgElement = document.getElementById('demo-image');
+
+    const applyTextOverlay = () => {
+      const transformedUrl = cld.url('sample.jpg', {
+        transformation: [
+          {
+            overlay: 'text:Arial_40_bold:I%20love%20Cloudinary',
+            color: 'white',
+            background: 'black',
+            gravity: 'south',
+            y: 20
+          }
+        ]
+      });
+      imgElement.src = transformedUrl;
+    };
+
+    const applyCropSquare = () => {
+      const transformedUrl = cld.url('sample.jpg', {
+        crop: 'fill',
+        aspect_ratio: '1:1',
+        gravity: 'auto'
+      });
+      imgElement.src = transformedUrl;
+    };
+
+    const applyCartoonify = () => {
+      const transformedUrl = cld.url('sample.jpg', {
+        effect: 'cartoonify'
+      });
+      imgElement.src = transformedUrl;
+    };
+  </script>
+</body>
+</html>
